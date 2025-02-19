@@ -16,7 +16,8 @@
     },
     "files": [
       "index.js",
-      "package.json"
+      "package.json",
+      "services.json"
     ],
     "linux": {
       "target": [
