@@ -36,8 +36,13 @@ EOF
 chmod +x $APPIMAGE_PATH
 chmod +x $LAUNCHER_PATH
 
-# handle for SE Linux
-sudo chcon -u system_u -r object_r --type=bin_t $APPIMAGE_PATH
-sudo chcon -u system_u -r object_r --type=bin_t  $LAUNCHER_PATH
+IMAGE_INFO="/usr/share/ublue-os/image-info.json"
+
+if [ -f "$IMAGE_INFO" ]; then
+    echo "Ublue image detected"
+    # handle for SE Linux
+    sudo chcon -u system_u -r object_r --type=bin_t $APPIMAGE_PATH
+    sudo chcon -u system_u -r object_r --type=bin_t  $LAUNCHER_PATH
+fi
 
 echo "Installation complete"
