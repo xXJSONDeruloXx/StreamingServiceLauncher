@@ -16,7 +16,7 @@ echo "Downloading $APP AppImage"
 wget \
     $(curl -s $RELEASE_URL | \
     jq -r ".assets[] | select(.name | test(\".*AppImage\")) | .browser_download_url") \
-    -O $HOME/.local/bin/$APP.AppImage
+    -O $HOME/.local/bin/StreamingServiceLauncher.AppImage
 
 
 chmod +x $HOME/.local/bin/$APP.AppImage
