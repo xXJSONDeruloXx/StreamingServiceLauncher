@@ -27,10 +27,20 @@ function createWindow() {
   // pressing alt can bring up the menu bar even when its hidden. This accounts for that and disables it entirely
   win.setMenu(null);
 
-  const serviceName = getServiceName();
+  let serviceName, appUrl, userAgent, zoomFactor;
 
-  const { appUrl, userAgent, zoomFactor } =
-    streamingServices[serviceName] || {};
+  if (process.env.APP_URL) {
+    // user provided manual APP_URL override, use it instead
+    appUrl = process.env.APP_URL;
+
+    // other manual overrides
+    if (process.env.USER_AGENT) userAgent = process.env.USER_AGENT;
+    if (process.env.ZOOM_FACTOR) zoomFactor = process.env.ZOOM_FACTOR;
+  } else {
+    serviceName = getServiceName();
+
+    ({ appUrl, userAgent, zoomFactor } = streamingServices[serviceName] || {});
+  }
 
   win.loadURL(
     appUrl,
