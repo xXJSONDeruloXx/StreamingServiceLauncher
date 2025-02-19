@@ -13,24 +13,21 @@ curl -L https://raw.githubusercontent.com/aarron-lee/StreamingServiceLauncher/re
 # Uninstall
 
 ```bash
-rm $HOME/.local/bin/StreamingServiceLauncher.AppImage
+rm $HOME/Applications/StreamingServiceLauncher.AppImage
+rm $HOME/.local/bin/streaming-service-launcher
 ```
 
 # Usage
 
 ```bash
-APP_NAME=serviceName $HOME/.local/bin/StreamingServiceLauncher.AppImage --no-sandbox
-# or
-$HOME/.local/bin/StreamingServiceLauncher.AppImage --appname=serviceName --no-sandbox
+$HOME/.local/bin/streaming-service-launcher serviceName
 ```
 
 Example:
 
 ```bash
 # example for netflix
-APP_NAME=netflix $HOME/.local/bin/StreamingServiceLauncher.AppImage --no-sandbox
-# or
-$HOME/.local/bin/StreamingServiceLauncher.AppImage --appname=netflix --no-sandbox
+$HOME/.local/bin/streaming-service-launcher netflix
 ```
 
-You can find all `APP_NAME` values in the [services.json](./services.json)
+You can find all `serviceName` values in the [services.json](./services.json)
