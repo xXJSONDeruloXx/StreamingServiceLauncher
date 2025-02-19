@@ -2,10 +2,13 @@ const streamingServices = require("./services.json");
 const { app, BrowserWindow } = require("electron");
 
 const getServiceName = () => {
-  const flag = process.argv[process.argv.length - 1];
-  const appname = flag?.match(/--appname=([a-zA-Z0-9]+)/);
-  const extractedAppname = appname ? appname[1] : undefined;
+  let extractedAppname;
 
+  for (let i = 0; i < process.argv.length; i++) {
+    let flag = process.argv[i];
+    const appname = flag?.match(/--appname=([a-zA-Z0-9]+)/);
+    if (appname) extractedAppname = appname[1];
+  }
   // default is youtube
   const serviceName = extractedAppname || process.env?.APP_NAME || "youtube";
 
