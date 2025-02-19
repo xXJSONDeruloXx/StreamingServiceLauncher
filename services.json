@@ -14,6 +14,7 @@
     "appUrl": "https://www.disneyplus.com/"
   },
   "crunchyroll": {
+    "recommendStandaloneApp": true,
     "appUrl": "https://github.com/aarron-lee/crunchyroll-linux?tab=readme-ov-file#crunchyroll-for-linux"
   },
   "amazonPrimeVideo": {
@@ -41,6 +42,7 @@
     "appUrl": "https://www.peacocktv.com/"
   },
   "plex": {
+    "recommendStandaloneApp": true,
     "appUrl": "https://flathub.org/apps/tv.plex.PlexHTPC"
   },
   "slingTV": {
@@ -58,7 +60,7 @@
   "youtubeMusic": {
     "appUrl": "https://music.youtube.com/"
   },
-  "YouTubeTV": {
+  "youTubeTV": {
     "appUrl": "https://tv.youtube.com/"
   }
 }
