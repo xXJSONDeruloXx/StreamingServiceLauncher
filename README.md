@@ -19,13 +19,18 @@ rm $HOME/.local/bin/StreamingServiceLauncher.AppImage
 # Usage
 
 ```bash
-APP_NAME=serviceName $HOME/.local/bin/StreamingServiceLauncher.AppImage
+APP_NAME=serviceName $HOME/.local/bin/StreamingServiceLauncher.AppImage --no-sandbox
+# or
+$HOME/.local/bin/StreamingServiceLauncher.AppImage --appname=serviceName --no-sandbox
 ```
 
 Example:
 
 ```bash
-APP_NAME=netflix $HOME/.local/bin/StreamingServiceLauncher.AppImage
+# example for netflix
+APP_NAME=netflix $HOME/.local/bin/StreamingServiceLauncher.AppImage --no-sandbox
+# or
+$HOME/.local/bin/StreamingServiceLauncher.AppImage --appname=netflix --no-sandbox
 ```
 
 You can find all `APP_NAME` values in the [services.json](./services.json)
