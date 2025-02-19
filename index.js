@@ -35,7 +35,8 @@ function createWindow() {
 
     // other manual overrides
     if (process.env.USER_AGENT) userAgent = process.env.USER_AGENT;
-    if (process.env.ZOOM_FACTOR) zoomFactor = process.env.ZOOM_FACTOR;
+    if (process.env.ZOOM_FACTOR)
+      zoomFactor = parseFloat(process.env.ZOOM_FACTOR);
   } else {
     serviceName = getServiceName();
 
