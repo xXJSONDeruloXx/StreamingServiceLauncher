@@ -1,0 +1,36 @@
+{
+  "name": "streaming-service-launcher",
+  "version": "1.0.0",
+  "description": "Simple Launcher for streaming services",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+  "build": {
+    "appId": "com.aarron-lee.streaming-service-launcher",
+    "productName": "StreamingServiceLauncher",
+    "electronDownload": {
+      "mirror": "https://github.com/castlabs/electron-releases/releases/download/v"
+    },
+    "files": [
+      "index.js",
+      "package.json"
+    ],
+    "linux": {
+      "target": [
+        "AppImage"
+      ],
+      "artifactName": "${productName}_v${version}_linux.${ext}",
+      "category": "Utility"
+    }
+  },
+  "keywords": [],
+  "author": "aarron-lee",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "github:castlabs/electron-releases#v33.4.1+wvcus",
+    "electron-builder": "^24.13.3"
+  }
+}
