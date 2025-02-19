@@ -10,6 +10,9 @@ fi
 
 mkdir -p $HOME/.local/bin
 
+# remove old version
+rm -f $HOME/.local/bin/StreamingServiceLauncher.AppImage
+
 echo "Downloading $APP AppImage"
 
 # curl -L $(curl -s $RELEASE_URL | grep "browser_download_url" | cut -d '"' -f 4) -o $HOME/.local/bin/$APP.AppImage
