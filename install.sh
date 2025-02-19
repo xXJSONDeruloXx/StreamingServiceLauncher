@@ -1,17 +1,24 @@
 #!/usr/bin/bash
 
-APP=StreamingServiceLauncher
-RELEASE_URL=https://api.github.com/repos/aarron-lee/$APP/releases/latest
-
 if [ "$EUID" -eq 0 ]
   then echo "Please do not run as root"
   exit
 fi
 
-mkdir -p $HOME/.local/bin
+APP=StreamingServiceLauncher
+RELEASE_URL=https://api.github.com/repos/aarron-lee/$APP/releases/latest
 
-# remove old version
+APPIMAGE_PATH=$HOME/Applications/$APP.AppImage
+LAUNCHER_PATH=$HOME/.local/bin/streaming-service-launcher
+
+# make dirs if non-existent
+mkdir -p $HOME/.local/bin
+mkdir -p $HOME/Applications
+
+# remove old versions
 rm -f $HOME/.local/bin/StreamingServiceLauncher.AppImage
+rm -f $APPIMAGE_PATH
+rm -f $LAUNCHER_PATH
 
 echo "Downloading $APP AppImage"
 
@@ -19,10 +26,18 @@ echo "Downloading $APP AppImage"
 wget \
     $(curl -s $RELEASE_URL | \
     jq -r ".assets[] | select(.name | test(\".*AppImage\")) | .browser_download_url") \
-    -O $HOME/.local/bin/StreamingServiceLauncher.AppImage
+    -O $APPIMAGE_PATH
 
+cat << EOF > $LAUNCHER_PATH
+#!/bin/bash
+$APPIMAGE_PATH --appname=\$1 --no-sandbox
+EOF
 
-chmod +x $HOME/.local/bin/$APP.AppImage
+chmod +x $APPIMAGE_PATH
+chmod +x $LAUNCHER_PATH
 
+# handle for SE Linux
+sudo chcon -u system_u -r object_r --type=bin_t $APPIMAGE_PATH
+sudo chcon -u system_u -r object_r --type=bin_t  $LAUNCHER_PATH
 
 echo "Installation complete"
