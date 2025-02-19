@@ -2,9 +2,9 @@
 
 Simple Launcher for Video Streaming Services on Linux
 
-# Installation
+# Installation / Update
 
-run the following script:
+run the following script, it does both install and updates:
 
 ```
 curl -L https://raw.githubusercontent.com/aarron-lee/StreamingServiceLauncher/refs/heads/main/install.sh | sh
