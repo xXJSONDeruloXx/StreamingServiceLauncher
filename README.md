@@ -39,7 +39,7 @@ You can also set custom targets, see below for usage:
 ```bash
 APP_URL=https://example.com  $HOME/.local/bin/streaming-service-launcher
 
-# USER_AGENT and ZOOM_FACTOR can additionally be added, but requires the APP_URL env var
+# Optional: USER_AGENT and ZOOM_FACTOR can additionally be added, but requires the APP_URL env var
 # ZOOM_FACTOR must be an integer or float
 APP_URL=https://example.com  USER_AGENT="UserAgent Here"  ZOOM_FACTOR="1.5"  $HOME/.local/bin/streaming-service-launcher
 ```
