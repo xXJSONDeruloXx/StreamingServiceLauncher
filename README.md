@@ -32,6 +32,26 @@ $HOME/.local/bin/streaming-service-launcher netflix
 
 You can find all `serviceName` values in the [services.json](./services.json)
 
+# Add to Steam Deck Gaming mode
+
+```bash
+# example for adding netflix to Steam Game mode
+
+mkdir -p $HOME/Applications/streaming_scripts
+
+# creates a netflix.sh script
+cat << EOF > $HOME/Applications/streaming_scripts/netflix.sh
+#!/bin/bash
+$HOME/.local/bin/streaming-service-launcher netflix
+EOF
+
+# make netflix.sh script executable
+chmod +x  $HOME/Applications/streaming_scripts/netflix.sh
+
+# Add to Steam game mode
+steamos-add-to-steam $HOME/Applications/streaming_scripts/netflix.sh
+```
+
 # Custom Targets
 
 You can also set custom targets, see below for usage:
