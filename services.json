@@ -12,5 +12,8 @@
   },
   "disneyPlus": {
     "appUrl": "https://www.disneyplus.com/"
+  },
+  "crunchyroll": {
+    "appUrl": "https://github.com/aarron-lee/crunchyroll-linux?tab=readme-ov-file#crunchyroll-for-linux"
   }
 }
