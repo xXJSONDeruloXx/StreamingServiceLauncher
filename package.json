@@ -1,6 +1,6 @@
 {
   "name": "streaming-service-launcher",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Simple Launcher for streaming services",
   "main": "index.js",
   "scripts": {
@@ -33,5 +33,6 @@
   "devDependencies": {
     "electron": "github:castlabs/electron-releases#v33.4.1+wvcus",
     "electron-builder": "^24.13.3"
-  }
+  },
+  "packageManager": "pnpm@8.15.4+sha1.c85a4305534f76d461407b59277b954bac97b5c4"
 }
