@@ -1,6 +1,6 @@
 # StreamingServiceLauncher
 
-Simple Launcher for Video Streaming Services on Linux
+Simple Launcher for Video Streaming Services on SteamOS, Bazzite, ChimeraOS, etc
 
 # Installation / Update
 
