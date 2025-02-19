@@ -15,5 +15,50 @@
   },
   "crunchyroll": {
     "appUrl": "https://github.com/aarron-lee/crunchyroll-linux?tab=readme-ov-file#crunchyroll-for-linux"
+  },
+  "amazonPrimeVideo": {
+    "appUrl": "https://www.amazon.com/video"
+  },
+  "appleTv": {
+    "appUrl": "https://tv.apple.com/"
+  },
+  "curiosityStream": {
+    "appUrl": "https://curiositystream.com"
+  },
+  "geForceNow": {
+    "appUrl": "https://play.geforcenow.com/mall/"
+  },
+  "hboMax": {
+    "appUrl": "https://www.max.com/"
+  },
+  "hulu": {
+    "appUrl": "https://www.hulu.com/"
+  },
+  "paramountPlus": {
+    "appUrl": "https://www.paramountplus.com/"
+  },
+  "peacock": {
+    "appUrl": "https://www.peacocktv.com/"
+  },
+  "plex": {
+    "appUrl": "https://flathub.org/apps/tv.plex.PlexHTPC"
+  },
+  "slingTV": {
+    "appUrl": "https://www.sling.com"
+  },
+  "spotify": {
+    "appUrl": "https://open.spotify.com/"
+  },
+  "vimeo": {
+    "appUrl": "https://vimeo.com/"
+  },
+  "xboxGamePassStreaming": {
+    "appUrl": "https://www.xbox.com/play"
+  },
+  "youtubeMusic": {
+    "appUrl": "https://music.youtube.com/"
+  },
+  "YouTubeTV": {
+    "appUrl": "https://tv.youtube.com/"
   }
 }
