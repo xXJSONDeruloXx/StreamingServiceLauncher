@@ -35,6 +35,24 @@ $HOME/.local/bin/streaming-service-launcher netflix
 
 You can find all `serviceName` values in the [services.json](./services.json)
 
+## Create Desktop Entries
+
+```bash
+$HOME/.local/bin/create-streaming-app-desktop-entry serviceName
+```
+
+Example for netflix:
+
+```bash
+# creates desktop entry
+$HOME/.local/bin/create-streaming-app-desktop-entry netflix
+
+# This will generate a desktop app entry in the following location:
+$HOME/.local/share/applications/streamingservicelauncher-netflix.desktop
+```
+
+Delete the generated desktop entry file if you wish to remove it.
+
 ## Add to Steam Deck Gaming mode
 
 Note, your distro must support the `steamos-add-to-steam` command
