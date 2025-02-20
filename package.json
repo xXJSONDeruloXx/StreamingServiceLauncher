@@ -3,6 +3,10 @@
   "version": "0.0.6",
   "description": "Simple Launcher for streaming services",
   "main": "index.js",
+  "author":{
+    "name": "kurt",
+    "email": "email@example.com"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "electron .",
