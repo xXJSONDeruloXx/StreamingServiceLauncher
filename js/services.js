@@ -47,20 +47,10 @@ function generateAppInstallInstructions(serviceName, appInfo) {
 
     <h2>Add to Steam Deck Gaming mode</h2>
 
+    <p>Run the following in Terminal:</p>
+
     <pre>
-    mkdir -p $HOME/Applications/streaming_scripts
-
-    # creates a ${serviceName}.sh script
-    cat << EOF > $HOME/Applications/streaming_scripts/${serviceName}.sh
-    #!/bin/bash
-    $HOME/.local/bin/streaming-service-launcher ${serviceName}
-    EOF
-
-    # make ${serviceName}.sh script executable
-    chmod +x  $HOME/Applications/streaming_scripts/${serviceName}.sh
-
-    # Add to Steam game mode
-    steamos-add-to-steam $HOME/Applications/streaming_scripts/${serviceName}.sh
+    $HOME/.local/bin/steamos-install-streaming-app ${serviceName}
     </pre>
   `;
 }
