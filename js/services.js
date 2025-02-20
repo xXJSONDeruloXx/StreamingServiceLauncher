@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
       updateAppInfo(Object.entries(json)[0]);
 
       Object.entries(json).forEach(([serviceName, info]) => {
-        const streamingService = document.createElement("div");
+        const streamingService = document.createElement("button");
 
         streamingService.innerHTML = serviceName;
         streamingService.setAttribute(
@@ -19,7 +19,6 @@ document.addEventListener("DOMContentLoaded", () => {
           text-transform: capitalize;
           padding: 1rem;
           border: 1px solid black;
-          hover: pointer;
         `,
         );
 
@@ -34,12 +33,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function updateAppInfo([serviceName, info]) {
   const el = document.getElementById("serviceInstallInfo");
+  el.setAttribute("style", `margin: 1rem;`);
   if (info.recommendStandaloneApp) {
     el.innerHTML = `
       <h2 style="text-transform: capitalize;">${serviceName}</h2>
 
       <p>For this app, it is recommended to use the already existing Standalone App.</p>
-      <p>See the following link: <a href="${info.appUrl}">${info.appUrl}</a></p>
+      <p>See the following link: <a rel="noreferrer" target="_blank" href="${info.appUrl}">${info.appUrl}</a></p>
       `;
   } else {
     el.innerHTML = generateAppInstallInstructions(serviceName, info);

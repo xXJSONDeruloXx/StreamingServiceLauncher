@@ -1,5 +1,5 @@
 const streamingServices = require("./services.json");
-const { app, BrowserWindow } = require("electron");
+const { app, BrowserWindow, shell } = require("electron");
 
 const getServiceName = () => {
   let extractedAppname;
@@ -43,6 +43,11 @@ function createWindow() {
           nodeIntegration: false,
           contextIsolation: true,
         },
+      });
+
+      win.webContents.setWindowOpenHandler((details) => {
+        shell.openExternal(details.url);
+        return { action: "deny" };
       });
 
       win.loadFile("./index.html");
