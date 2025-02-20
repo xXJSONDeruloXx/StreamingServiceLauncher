@@ -36,7 +36,7 @@ function updateAppInfo([serviceName, info]) {
   const el = document.getElementById("serviceInstallInfo");
   if (info.recommendStandaloneApp) {
     el.innerHTML = `
-      <h2>${serviceName}</h2>
+      <h2 style="text-transform: capitalize;">${serviceName}</h2>
 
       <p>For this app, it is recommended to use the already existing Standalone App.</p>
       <p>See the following link: <a href="${info.appUrl}">${info.appUrl}</a></p>
@@ -48,7 +48,7 @@ function updateAppInfo([serviceName, info]) {
 
 function generateAppInstallInstructions(serviceName, appInfo) {
   return `
-    <h2>${serviceName}</h2>
+    <h2 style="text-transform: capitalize;">${serviceName}</h2>
 
     <p>App url: ${appInfo.appUrl}</p>
 
