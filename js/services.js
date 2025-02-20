@@ -52,7 +52,15 @@ function generateAppInstallInstructions(serviceName, appInfo) {
 
     <p>App url: ${appInfo.appUrl}</p>
 
+    <h2>Basic Usage</h2>
+
+    <p>Run the following in terminal</p>
+
+    <pre>$HOME/.local/bin/streaming-service-launcher ${serviceName}</pre>
+
     <h2>Add to Steam Deck Gaming mode</h2>
+
+    <p>Note, your distro must support the "steamos-add-to-steam" command</p>
 
     <p>Run the following in Terminal:</p>
 
