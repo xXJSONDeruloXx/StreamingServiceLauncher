@@ -17,6 +17,7 @@ rm $HOME/Applications/StreamingServiceLauncher.AppImage
 rm $HOME/.local/bin/streaming-service-launcher
 rm $HOME/.local/bin/steamos-install-streaming-app
 rm $HOME/.local/share/applications/streamingservicelauncher*.desktop
+rm $HOME/.local/bin/create-streaming-app-desktop-entry
 ```
 
 # Usage
