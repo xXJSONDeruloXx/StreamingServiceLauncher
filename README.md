@@ -2,6 +2,8 @@
 
 Simple Launcher for Video Streaming Services on SteamOS, Bazzite, SteamFork, etc
 
+![app image](./img/app.png)
+
 # Installation / Update
 
 run the following script, it does both install and updates:
