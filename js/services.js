@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function updateAppInfo([serviceName, info]) {
   const el = document.getElementById("serviceInstallInfo");
-  el.setAttribute("style", `margin: 1rem;`);
+  el.setAttribute("style", `padding-left: 1rem;`);
   if (info.recommendStandaloneApp) {
     el.innerHTML = `
       <h2 style="text-transform: capitalize;">${serviceName}</h2>
@@ -57,6 +57,18 @@ function generateAppInstallInstructions(serviceName, appInfo) {
     <p>Run the following in terminal</p>
 
     <pre>$HOME/.local/bin/streaming-service-launcher ${serviceName}</pre>
+
+    <h2>Add Application to Desktop</h2>
+
+    <p>If you would like to generate a shortcut that is accessible via your Desktop, run the following in terminal:</p>
+
+    <pre>$HOME/.local/bin/create-streaming-app-desktop-entry ${serviceName}</pre>
+
+    <p>This will generate a desktop app entry in the following location:</p>
+
+    <pre>$HOME/.local/share/applications/streamingservicelauncher-${serviceName}.desktop</pre>
+
+    <p>Delete this file if you wish to remove the app shortcut</p>
 
     <h2>Add to Steam Deck Gaming mode</h2>
 

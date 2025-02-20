@@ -11,6 +11,7 @@ RELEASE_URL=https://api.github.com/repos/aarron-lee/$APP/releases/latest
 APPIMAGE_PATH=$HOME/Applications/$APP.AppImage
 LAUNCHER_PATH=$HOME/.local/bin/streaming-service-launcher
 STEAMOS_HELPER_PATH=$HOME/.local/bin/steamos-install-streaming-app
+DESKTOP_ENTRY_HELPER_PATH=$HOME/.local/bin/create-streaming-app-desktop-entry
 DESKTOP_ENTRY_PATH=$HOME/.local/share/applications/streamingservicelauncher.desktop
 
 # make dirs if non-existent
@@ -23,6 +24,7 @@ rm -f $APPIMAGE_PATH
 rm -f $LAUNCHER_PATH
 rm -f $DESKTOP_ENTRY_PATH
 rm -f $STEAMOS_HELPER_PATH
+rm -f $DESKTOP_ENTRY_HELPER_PATH
 
 echo "Downloading $APP AppImage"
 
@@ -51,10 +53,12 @@ Categories=Utility;
 EOF
 
 curl -L https://raw.githubusercontent.com/aarron-lee/StreamingServiceLauncher/refs/heads/main/scripts/steamos-install-streaming-app.sh > $STEAMOS_HELPER_PATH
+curl -L https://raw.githubusercontent.com/aarron-lee/StreamingServiceLauncher/refs/heads/main/scripts/create-streaming-app-desktop-entry.sh > $DESKTOP_ENTRY_HELPER_PATH
 
 chmod +x $APPIMAGE_PATH
 chmod +x $LAUNCHER_PATH
 chmod +x $STEAMOS_HELPER_PATH
+chmod +x $DESKTOP_ENTRY_HELPER_PATH
 
 IMAGE_INFO="/usr/share/ublue-os/image-info.json"
 
@@ -62,8 +66,9 @@ if [ -f "$IMAGE_INFO" ]; then
     echo "Ublue image detected"
     # handle for SE Linux
     sudo chcon -u system_u -r object_r --type=bin_t $APPIMAGE_PATH
-    sudo chcon -u system_u -r object_r --type=bin_t  $LAUNCHER_PATH
-    sudo chcon -u system_u -r object_r --type=bin_t  $STEAMOS_HELPER_PATH
+    sudo chcon -u system_u -r object_r --type=bin_t $LAUNCHER_PATH
+    sudo chcon -u system_u -r object_r --type=bin_t $STEAMOS_HELPER_PATH
+    sudo chcon -u system_u -r object_r --type=bin_t $DESKTOP_ENTRY_HELPER_PATH
 fi
 
 echo "Installation complete"
