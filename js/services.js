@@ -64,8 +64,6 @@ function generateAppInstallInstructions(serviceName, appInfo) {
 
     <p>Run the following in Terminal:</p>
 
-    <pre>
-    $HOME/.local/bin/steamos-install-streaming-app ${serviceName}
-    </pre>
+    <pre>$HOME/.local/bin/steamos-install-streaming-app ${serviceName}</pre>
   `;
 }
