@@ -16,6 +16,7 @@ curl -L https://raw.githubusercontent.com/aarron-lee/StreamingServiceLauncher/re
 rm $HOME/Applications/StreamingServiceLauncher.AppImage
 rm $HOME/.local/bin/streaming-service-launcher
 rm $HOME/.local/bin/steamos-install-streaming-app
+rm $HOME/.local/share/applications/streamingservicelauncher.desktop
 ```
 
 # Usage

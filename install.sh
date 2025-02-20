@@ -11,6 +11,7 @@ RELEASE_URL=https://api.github.com/repos/aarron-lee/$APP/releases/latest
 APPIMAGE_PATH=$HOME/Applications/$APP.AppImage
 LAUNCHER_PATH=$HOME/.local/bin/streaming-service-launcher
 STEAMOS_HELPER_PATH=$HOME/.local/bin/steamos-install-streaming-app
+DESKTOP_ENTRY_PATH=$HOME/.local/share/applications/streamingservicelauncher.desktop
 
 # make dirs if non-existent
 mkdir -p $HOME/.local/bin
@@ -20,6 +21,7 @@ mkdir -p $HOME/Applications
 rm -f $HOME/.local/bin/StreamingServiceLauncher.AppImage
 rm -f $APPIMAGE_PATH
 rm -f $LAUNCHER_PATH
+rm -f $DESKTOP_ENTRY_PATH
 rm -f $STEAMOS_HELPER_PATH
 
 echo "Downloading $APP AppImage"
@@ -33,6 +35,19 @@ wget \
 cat << EOF > $LAUNCHER_PATH
 #!/bin/bash
 $APPIMAGE_PATH --appname=\$1 --no-sandbox
+EOF
+
+cat << EOF > $DESKTOP_ENTRY_PATH
+[Desktop Entry]
+Name=StreamingServiceLauncher
+Exec=$APPIMAGE_PATH --no-sandbox %U
+TryExec=$APPIMAGE_PATH
+Terminal=false
+Type=Application
+
+StartupWMClass=StreamingServiceLauncher
+Comment=Simple Launcher for streaming services
+Categories=Utility;
 EOF
 
 curl -L https://raw.githubusercontent.com/aarron-lee/StreamingServiceLauncher/refs/heads/main/scripts/steamos-install-streaming-app.sh > $STEAMOS_HELPER_PATH
