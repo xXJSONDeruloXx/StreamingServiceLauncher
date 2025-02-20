@@ -9,24 +9,12 @@ const getServiceName = () => {
     const appname = flag?.match(/--appname=([a-zA-Z0-9]+)/);
     if (appname) extractedAppname = appname[1];
   }
-  // default is youtube
-  const serviceName = extractedAppname || process.env?.APP_NAME || "youtube";
+  const serviceName = extractedAppname || process.env?.APP_NAME || "default";
 
   return serviceName;
 };
 
 function createWindow() {
-  const win = new BrowserWindow({
-    fullscreen: true,
-    autoHideMenuBar: true,
-    webPreferences: {
-      nodeIntegration: false,
-      contextIsolation: true,
-    },
-  });
-  // pressing alt can bring up the menu bar even when its hidden. This accounts for that and disables it entirely
-  win.setMenu(null);
-
   let serviceName, appUrl, userAgent, zoomFactor;
 
   if (process.env.APP_URL) {
@@ -40,8 +28,34 @@ function createWindow() {
   } else {
     serviceName = getServiceName();
 
+    if (serviceName === "default") {
+      // render index.html, since no appName was provided
+      const win = new BrowserWindow({
+        fullscreen: false,
+        autoHideMenuBar: true,
+        webPreferences: {
+          nodeIntegration: false,
+          contextIsolation: true,
+        },
+      });
+
+      win.loadFile("./index.html");
+      return;
+    }
+
     ({ appUrl, userAgent, zoomFactor } = streamingServices[serviceName] || {});
   }
+
+  const win = new BrowserWindow({
+    fullscreen: true,
+    autoHideMenuBar: true,
+    webPreferences: {
+      nodeIntegration: false,
+      contextIsolation: true,
+    },
+  });
+  // pressing alt can bring up the menu bar even when its hidden. This accounts for that and disables it entirely
+  win.setMenu(null);
 
   win.loadURL(
     appUrl,
