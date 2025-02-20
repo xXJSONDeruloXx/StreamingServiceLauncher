@@ -26,13 +26,16 @@ jobs:
 
       - name: build AppImage and RPM
         run: |
+          # Install required dependencies
+          pacman -Syu base-devel rpm-build --noconfirm
+          
           npm install
           # Build AppImage
           npm run build --linux
           chmod +x dist/StreamingServiceLauncher_v*_linux.AppImage
           
-          # Build RPM
-          npm run build -- -l rpm
+          # Build RPM specifically
+          npm run build -c.linux.target=rpm
         continue-on-error: true
 
       - name: show files
