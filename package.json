@@ -5,7 +5,7 @@
   "main": "index.js",
   "author":{
     "name": "kurt",
-    "email": "email@example.com"
+    "email": "dkh4830@gmail.com"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -28,12 +28,12 @@
         "AppImage",
         "rpm"
       ],
+      "maintainer": "kurt <dkh4830@gmail.com>",
       "artifactName": "${productName}_v${version}_linux.${ext}",
       "category": "Utility"
     }
   },
   "keywords": [],
-  "author": "aarron-lee",
   "license": "MIT",
   "devDependencies": {
     "electron": "github:castlabs/electron-releases#v33.4.1+wvcus",
