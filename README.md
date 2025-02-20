@@ -35,22 +35,14 @@ You can find all `serviceName` values in the [services.json](./services.json)
 ## Add to Steam Deck Gaming mode
 
 ```bash
-# example for adding netflix to Steam Game mode
+# adds streaming service to Steam Gaming mode
+$HOME/.local/bin/steamos-install-streaming-app serviceName
 
-mkdir -p $HOME/Applications/streaming_scripts
-
-# creates a netflix.sh script
-cat << EOF > $HOME/Applications/streaming_scripts/netflix.sh
-#!/bin/bash
-$HOME/.local/bin/streaming-service-launcher netflix
-EOF
-
-# make netflix.sh script executable
-chmod +x  $HOME/Applications/streaming_scripts/netflix.sh
-
-# Add to Steam game mode
-steamos-add-to-steam $HOME/Applications/streaming_scripts/netflix.sh
+# example: netflix
+$HOME/.local/bin/steamos-install-streaming-app netflix
 ```
+
+Make sure to reboot steam after adding a streaming app. You can find all `serviceName` values in the [services.json](./services.json)
 
 ## Custom Targets
 

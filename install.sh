@@ -10,6 +10,7 @@ RELEASE_URL=https://api.github.com/repos/aarron-lee/$APP/releases/latest
 
 APPIMAGE_PATH=$HOME/Applications/$APP.AppImage
 LAUNCHER_PATH=$HOME/.local/bin/streaming-service-launcher
+STEAMOS_HELPER_PATH=$HOME/.local/bin/steamos-install-streaming-app
 
 # make dirs if non-existent
 mkdir -p $HOME/.local/bin
@@ -19,6 +20,7 @@ mkdir -p $HOME/Applications
 rm -f $HOME/.local/bin/StreamingServiceLauncher.AppImage
 rm -f $APPIMAGE_PATH
 rm -f $LAUNCHER_PATH
+rm -f $STEAMOS_HELPER_PATH
 
 echo "Downloading $APP AppImage"
 
@@ -33,8 +35,11 @@ cat << EOF > $LAUNCHER_PATH
 $APPIMAGE_PATH --appname=\$1 --no-sandbox
 EOF
 
+curl -L https://raw.githubusercontent.com/aarron-lee/StreamingServiceLauncher/refs/heads/main/scripts/steamos-install-streaming-app.sh > $STEAMOS_HELPER_PATH
+
 chmod +x $APPIMAGE_PATH
 chmod +x $LAUNCHER_PATH
+chmod +x $STEAMOS_HELPER_PATH
 
 IMAGE_INFO="/usr/share/ublue-os/image-info.json"
 
@@ -43,6 +48,7 @@ if [ -f "$IMAGE_INFO" ]; then
     # handle for SE Linux
     sudo chcon -u system_u -r object_r --type=bin_t $APPIMAGE_PATH
     sudo chcon -u system_u -r object_r --type=bin_t  $LAUNCHER_PATH
+    sudo chcon -u system_u -r object_r --type=bin_t  $STEAMOS_HELPER_PATH
 fi
 
 echo "Installation complete"
