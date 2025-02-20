@@ -35,6 +35,8 @@ You can find all `serviceName` values in the [services.json](./services.json)
 
 ## Add to Steam Deck Gaming mode
 
+Note, your distro must support the `steamos-add-to-steam` command
+
 ```bash
 # adds streaming service to Steam Gaming mode
 $HOME/.local/bin/steamos-install-streaming-app serviceName
