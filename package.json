@@ -22,13 +22,13 @@
     ],
     "linux": {
       "target": [
-        "AppImage",
-        "rpm",
-        "deb"
+        {
+          "target": "rpm",
+          "arch": ["x64"]
+        }
       ],
       "maintainer": "kurt <dkh4830@gmail.com>",
       "vendor": "kurt <dkh4830@gmail.com>",
-      "author": "kurt <dkh4830@gmail.com>",
       "artifactName": "${productName}_v${version}_linux.${ext}",
       "category": "Utility"
     }
