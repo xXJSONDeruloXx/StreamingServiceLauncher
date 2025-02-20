@@ -6,6 +6,9 @@ document.addEventListener("DOMContentLoaded", () => {
   fetch("services.json")
     .then((response) => response.json())
     .then((json) => {
+      // initialize appInfo with first entry
+      updateAppInfo(Object.entries(json)[0]);
+
       Object.entries(json).forEach(([serviceName, info]) => {
         const streamingService = document.createElement("div");
 
@@ -21,23 +24,27 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
         streamingService.addEventListener("click", () => {
-          const el = document.getElementById("serviceInstallInfo");
-          if (info.recommendStandaloneApp) {
-            el.innerHTML = `
-              <h2>${serviceName}</h2>
-
-              <p>For this app, it is recommended to use the already existing Standalone App.</p>
-              <p>See the following link: <a href="${info.appUrl}">${info.appUrl}</a></p>
-              `;
-          } else {
-            el.innerHTML = generateAppInstallInstructions(serviceName, info);
-          }
+          updateAppInfo([serviceName, info]);
         });
 
         streamingServiceNames.appendChild(streamingService);
       });
     });
 });
+
+function updateAppInfo([serviceName, info]) {
+  const el = document.getElementById("serviceInstallInfo");
+  if (info.recommendStandaloneApp) {
+    el.innerHTML = `
+      <h2>${serviceName}</h2>
+
+      <p>For this app, it is recommended to use the already existing Standalone App.</p>
+      <p>See the following link: <a href="${info.appUrl}">${info.appUrl}</a></p>
+      `;
+  } else {
+    el.innerHTML = generateAppInstallInstructions(serviceName, info);
+  }
+}
 
 function generateAppInstallInstructions(serviceName, appInfo) {
   return `

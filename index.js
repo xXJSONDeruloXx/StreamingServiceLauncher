@@ -31,6 +31,12 @@ function createWindow() {
     if (serviceName === "default") {
       // render index.html, since no appName was provided
       const win = new BrowserWindow({
+        width: 1280,
+        height: 720,
+        minWidth: 1280,
+        minHeight: 720,
+        maxWidth: 1280,
+        maxHeight: 720,
         fullscreen: false,
         autoHideMenuBar: true,
         webPreferences: {
