@@ -21,7 +21,8 @@
     ],
     "linux": {
       "target": [
-        "AppImage"
+        "AppImage",
+        "rpm"
       ],
       "artifactName": "${productName}_v${version}_linux.${ext}",
       "category": "Utility"

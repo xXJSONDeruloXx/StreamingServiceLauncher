@@ -19,27 +19,34 @@ jobs:
     steps:
       - name: set git global safe directory
         run: |
-          pacman -Syu git npm --noconfirm
+          pacman -Syu git npm rpm-tools --noconfirm
           git config --global --add safe.directory $(realpath .)
 
       - uses: actions/checkout@v4
 
-      - name: build AppImage
+      - name: build AppImage and RPM
         run: |
           npm install
+          # Build AppImage
           npm run build --linux
           chmod +x dist/StreamingServiceLauncher_v*_linux.AppImage
+          
+          # Build RPM
+          npm run build -- -l rpm
         continue-on-error: true
 
       - name: show files
         run: |
           ls ./dist/StreamingServiceLauncher_v*_linux.AppImage
+          ls ./dist/*.rpm
 
       - name: Publish Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: StreamingServiceLauncher
-          path: ./dist/StreamingServiceLauncher_v*_linux.AppImage
+          path: |
+            ./dist/StreamingServiceLauncher_v*_linux.AppImage
+            ./dist/*.rpm
 
   publish:
     if: startsWith(github.ref, 'refs/tags/v')
@@ -58,7 +65,9 @@ jobs:
       - name: publish to github release
         uses: softprops/action-gh-release@v1
         with:
-          files: /tmp/artifacts/StreamingServiceLauncher/StreamingServiceLauncher_v*_linux.AppImage
+          files: |
+            /tmp/artifacts/StreamingServiceLauncher/StreamingServiceLauncher_v*_linux.AppImage
+            /tmp/artifacts/StreamingServiceLauncher/*.rpm
           tag_name: ${{ github.ref_name }}
           body: |
             StreamingServiceLauncher Release
