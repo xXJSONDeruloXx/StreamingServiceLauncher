@@ -1,5 +1,7 @@
 # StreamingServiceLauncher
 
+[![](https://img.shields.io/github/downloads/aarron-lee/StreamingServiceLauncher/total.svg)](https://github.com/aarron-lee/StreamingServiceLauncher/releases)
+
 Simple Launcher for Video Streaming Services on SteamOS, Bazzite, SteamFork, etc
 
 ![app image](./img/app.png)
