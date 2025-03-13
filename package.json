@@ -19,7 +19,8 @@
       "package.json",
       "services.json",
       "js/*",
-      "index.html"
+      "index.html",
+      "preload.js"
     ],
     "linux": {
       "target": [
