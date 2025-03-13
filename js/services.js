@@ -79,3 +79,12 @@ function generateAppInstallInstructions(serviceName, appInfo) {
     <pre>$HOME/.local/bin/steamos-install-streaming-app ${serviceName}</pre>
   `;
 }
+
+window.addEventListener("contextmenu", (e) => {
+  e.preventDefault();
+  electronUtils.showContextMenu(window.getSelection().toString());
+});
+
+window.electronUtils.receive("context-menu-command", (data) => {
+  navigator.clipboard.writeText(data);
+});

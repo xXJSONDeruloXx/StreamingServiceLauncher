@@ -1,5 +1,6 @@
 const streamingServices = require("./services.json");
-const { app, BrowserWindow, shell } = require("electron");
+const { app, BrowserWindow, shell, ipcMain, Menu } = require("electron");
+const path = require("path");
 
 const getServiceName = () => {
   let extractedAppname;
@@ -12,6 +13,21 @@ const getServiceName = () => {
   const serviceName = extractedAppname || process.env?.APP_NAME || "default";
 
   return serviceName;
+};
+
+const createCopyMenu = () => {
+  ipcMain.handle("show-context-menu", async (event, txt) => {
+    const template = [
+      {
+        label: "Copy",
+        click: () => {
+          event.sender.send("context-menu-command", txt);
+        },
+      },
+    ];
+    const menu = Menu.buildFromTemplate(template);
+    menu.popup(BrowserWindow.fromWebContents(event.sender));
+  });
 };
 
 function createWindow() {
@@ -29,6 +45,7 @@ function createWindow() {
     serviceName = getServiceName();
 
     if (serviceName === "default") {
+      createCopyMenu();
       // render index.html, since no appName was provided
       const win = new BrowserWindow({
         width: 1280,
@@ -42,6 +59,7 @@ function createWindow() {
         webPreferences: {
           nodeIntegration: false,
           contextIsolation: true,
+          preload: path.join(__dirname, "./preload.js"),
         },
       });
 
