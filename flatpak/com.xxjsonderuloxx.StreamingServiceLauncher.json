@@ -1,0 +1,66 @@
+{
+  "app-id": "com.xxjsonderuloxx.StreamingServiceLauncher",
+  "runtime": "org.freedesktop.Platform",
+  "runtime-version": "23.08",
+  "sdk": "org.freedesktop.Sdk",
+  "sdk-extensions": [
+    "org.freedesktop.Sdk.Extension.node20"
+  ],
+  "command": "streaming-service-launcher",
+  "separate-locales": false,
+  "finish-args": [
+    "--share=ipc",
+    "--share=network",
+    "--socket=pulseaudio",
+    "--socket=wayland",
+    "--socket=fallback-x11",
+    "--device=dri",
+    "--filesystem=home"
+  ],
+  "build-options": {
+    "append-path": "/usr/lib/sdk/node20/bin",
+    "env": {
+      "NPM_CONFIG_LOGLEVEL": "info"
+    }
+  },
+  "modules": [
+    {
+      "name": "streaming-service-launcher",
+      "buildsystem": "simple",
+      "build-commands": [
+        "mkdir -p /app/bin",
+        "mkdir -p /app/share/applications",
+        "mkdir -p /app/share/icons/hicolor/256x256/apps",
+        "cp -r * /app",
+        "install -D index.js /app/bin/index.js",
+        "install -D services.json /app/bin/services.json",
+        "install -D preload.js /app/bin/preload.js",
+        "cp -r js /app/bin/",
+        "cp index.html /app/bin/",
+        "install -Dm755 flatpak/launcher.sh /app/bin/streaming-service-launcher",
+        "install -Dm644 flatpak/com.xxjsonderuloxx.StreamingServiceLauncher.desktop /app/share/applications/com.xxjsonderuloxx.StreamingServiceLauncher.desktop",
+        "install -Dm644 flatpak/com.xxjsonderuloxx.StreamingServiceLauncher.png /app/share/icons/hicolor/256x256/apps/com.xxjsonderuloxx.StreamingServiceLauncher.png"
+      ],
+      "sources": [
+        {
+          "type": "dir",
+          "path": "."
+        }
+      ]
+    },
+    {
+      "name": "electron",
+      "buildsystem": "simple",
+      "build-commands": [
+        "npm install --cache /tmp/npm-cache electron@36.0.0",
+        "cp -r node_modules /app/"
+      ],
+      "sources": [
+        {
+          "type": "file",
+          "path": "./package.json"
+        }
+      ]
+    }
+  ]
+}

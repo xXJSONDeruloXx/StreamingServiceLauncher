@@ -1,0 +1,79 @@
+{
+  "app-id": "com.xxjsonderuloxx.StreamingServiceLauncher",
+  "runtime": "org.freedesktop.Platform",
+  "runtime-version": "23.08",
+  "sdk": "org.freedesktop.Sdk",
+  "sdk-extensions": [
+    "org.freedesktop.Sdk.Extension.node20"
+  ],
+  "command": "streaming-service-launcher",
+  "separate-locales": false,
+  "finish-args": [
+    "--share=ipc",
+    "--share=network",
+    "--socket=pulseaudio",
+    "--socket=wayland",
+    "--socket=fallback-x11",
+    "--device=dri",
+    "--filesystem=home",
+    "--env=ELECTRON_RUN_AS_NODE=1"
+  ],
+  "build-options": {
+    "append-path": "/usr/bin",
+    "env": {
+      "NPM_CONFIG_LOGLEVEL": "info",
+      "ELECTRON_CACHE": "/tmp/electron-cache",
+      "npm_config_cache": "/tmp/npm-cache"
+    },
+    "no-sandbox": true,
+    "system-helper": false
+  },
+  "modules": [
+    {
+      "name": "streaming-service-launcher",
+      "buildsystem": "simple",
+      "build-commands": [
+        "mkdir -p /app/bin",
+        "mkdir -p /app/share/applications",
+        "mkdir -p /app/share/icons/hicolor/256x256/apps",
+        
+        "# Copy required files",
+        "cp index.js /app/bin/",
+        "cp services.json /app/bin/",
+        "cp preload.js /app/bin/",
+        "cp -r js /app/bin/",
+        "cp index.html /app/bin/",
+        
+        "# Install launcher and metadata",
+        "install -Dm755 launcher.sh /app/bin/streaming-service-launcher",
+        "install -Dm644 com.xxjsonderuloxx.StreamingServiceLauncher.desktop /app/share/applications/com.xxjsonderuloxx.StreamingServiceLauncher.desktop",
+        "install -Dm644 com.xxjsonderuloxx.StreamingServiceLauncher.png /app/share/icons/hicolor/256x256/apps/com.xxjsonderuloxx.StreamingServiceLauncher.png"
+      ],
+      "sources": [
+        {
+          "type": "dir",
+          "path": "."
+        }
+      ]
+    },
+    {
+      "name": "electron",
+      "buildsystem": "simple",
+      "build-commands": [
+        "# Install Electron without using bubblewrap",
+        "npm config set unsafe-perm true",
+        "npm install --cache /tmp/npm-cache --no-optional electron@36.0.0",
+        "cp -r node_modules /app/",
+        
+        "# Ensure executable permissions",
+        "chmod -R +x /app/node_modules/.bin/"
+      ],
+      "sources": [
+        {
+          "type": "file",
+          "path": "package.json"
+        }
+      ]
+    }
+  ]
+}
