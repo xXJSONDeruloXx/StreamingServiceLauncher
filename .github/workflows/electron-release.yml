@@ -57,9 +57,21 @@ jobs:
         
       - name: build Flatpak
         run: |
+          # Copy necessary files to flatpak directory for build
+          VERSION=$(node -e "console.log(require('./package.json').version)")
+          cp package.json flatpak/
+          cp -r js flatpak/
+          cp index.js flatpak/
+          cp index.html flatpak/
+          cp preload.js flatpak/
+          cp services.json flatpak/
+          
+          # Navigate to flatpak directory and build
+          cd flatpak
           # Use sandbox=false to avoid FUSE dependency
-          flatpak-builder --user --repo=repo --force-clean build-dir flatpak/com.xxjsonderuloxx.StreamingServiceLauncher.json --disable-rofiles-fuse --sandbox=false
-          flatpak build-bundle repo StreamingServiceLauncher_v$(node -e "console.log(require('./package.json').version)").flatpak com.xxjsonderuloxx.StreamingServiceLauncher
+          flatpak-builder --user --repo=repo --force-clean build-dir com.xxjsonderuloxx.StreamingServiceLauncher.json --disable-rofiles-fuse --sandbox=false
+          flatpak build-bundle repo ../StreamingServiceLauncher_v${VERSION}.flatpak com.xxjsonderuloxx.StreamingServiceLauncher
+          cd ..
           chmod +x StreamingServiceLauncher_v*.flatpak
         continue-on-error: true
 

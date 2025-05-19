@@ -44,7 +44,7 @@
       "sources": [
         {
           "type": "dir",
-          "path": ".."
+          "path": "."
         }
       ]
     },
@@ -58,7 +58,7 @@
       "sources": [
         {
           "type": "file",
-          "path": "../package.json"
+          "path": "./package.json"
         }
       ]
     }
