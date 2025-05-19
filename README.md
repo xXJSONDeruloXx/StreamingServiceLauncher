@@ -42,7 +42,7 @@ rm $HOME/.local/bin/create-streaming-app-desktop-entry
 ## Flatpak
 
 ```bash
-flatpak uninstall --user com.aarron_lee.StreamingServiceLauncher
+flatpak uninstall --user com.xxjsonderuloxx.StreamingServiceLauncher
 ```
 
 # Usage
@@ -56,7 +56,7 @@ $HOME/.local/bin/streaming-service-launcher serviceName
 ## Flatpak
 
 ```bash
-flatpak run com.aarron_lee.StreamingServiceLauncher --appname=serviceName
+flatpak run com.xxjsonderuloxx.StreamingServiceLauncher --appname=serviceName
 ```
 
 Example:
@@ -66,7 +66,7 @@ Example:
 $HOME/.local/bin/streaming-service-launcher netflix
 
 # example for netflix (Flatpak)
-flatpak run com.aarron_lee.StreamingServiceLauncher --appname=netflix
+flatpak run com.xxjsonderuloxx.StreamingServiceLauncher --appname=netflix
 ```
 
 You can find all `serviceName` values in the [services.json](./services.json)

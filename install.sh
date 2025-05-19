@@ -40,7 +40,7 @@ if [ "$INSTALL_METHOD" = "flatpak" ]; then
   flatpak install --user -y /tmp/StreamingServiceLauncher.flatpak
   
   echo "Flatpak installation complete"
-  echo "You can run the app with: flatpak run com.aarron_lee.StreamingServiceLauncher"
+  echo "You can run the app with: flatpak run com.xxjsonderuloxx.StreamingServiceLauncher"
   
   # Clean up
   rm /tmp/StreamingServiceLauncher.flatpak

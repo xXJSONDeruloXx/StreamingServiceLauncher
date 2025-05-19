@@ -7,8 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "electron .",
     "build": "electron-builder",
-    "build:flatpak": "flatpak-builder --force-clean build-dir flatpak/com.aarron_lee.StreamingServiceLauncher.json",
-    "build:flatpak-bundle": "flatpak-builder --repo=repo --force-clean build-dir flatpak/com.aarron_lee.StreamingServiceLauncher.json && flatpak build-bundle repo StreamingServiceLauncher_v${npm_package_version}.flatpak com.aarron_lee.StreamingServiceLauncher"
+    "build:flatpak": "flatpak-builder --force-clean build-dir flatpak/com.xxjsonderuloxx.StreamingServiceLauncher.json",
+    "build:flatpak-bundle": "flatpak-builder --repo=repo --force-clean build-dir flatpak/com.xxjsonderuloxx.StreamingServiceLauncher.json && flatpak build-bundle repo StreamingServiceLauncher_v${npm_package_version}.flatpak com.xxjsonderuloxx.StreamingServiceLauncher"
   },
   "build": {
     "appId": "com.xxjsonderuloxx.streaming-service-launcher",
