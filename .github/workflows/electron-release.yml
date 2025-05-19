@@ -23,6 +23,12 @@ jobs:
           git config --global --add safe.directory $(realpath .)
 
       - uses: actions/checkout@v4
+      
+      - name: Install Flatpak SDK and Dependencies
+        run: |
+          pacman -S flatpak --noconfirm
+          flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+          flatpak install -y flathub org.freedesktop.Platform//23.08 org.freedesktop.Sdk//23.08
 
       - name: build AppImage
         run: |
@@ -80,3 +86,5 @@ jobs:
           draft: true
           generate_release_notes: true
           prerelease: contains(github.ref, 'pre')
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
