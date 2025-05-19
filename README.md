@@ -45,6 +45,35 @@ rm $HOME/.local/bin/create-streaming-app-desktop-entry
 flatpak uninstall --user com.xxjsonderuloxx.StreamingServiceLauncher
 ```
 
+# Development
+
+## CI Build Process
+
+This project uses GitHub Actions to automatically build both AppImage and Flatpak packages. The CI pipeline includes some special accommodations to handle the limitations of building Flatpak in a container environment:
+
+1. A special CI-specific manifest file (`manifest-ci.json`) is used for Flatpak builds in GitHub Actions
+2. The build uses additional flags to work around user namespace restrictions in containers:
+   - `--system-helper=disabled`
+   - `--disable-rofiles-fuse` 
+   - Additional sandbox-disabling flags
+
+If you're experiencing issues with the Flatpak build in CI environments:
+
+1. Check the uploaded build logs artifact for detailed error information
+2. Ensure all source files are correctly copied to the flatpak directory
+3. Consider using the fallback direct build approach which manually structures the Flatpak directory
+
+For local development and building:
+
+```bash
+# Build AppImage locally
+npm run build
+
+# Build Flatpak locally (works better than CI in most environments)
+npm run build:flatpak
+npm run build:flatpak-bundle
+```
+
 # Usage
 
 ## AppImage
