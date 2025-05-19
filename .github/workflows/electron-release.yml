@@ -28,12 +28,12 @@ jobs:
         run: |
           pacman -S flatpak --noconfirm
           flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-          flatpak install -y flathub org.freedesktop.Platform//23.08 org.freedesktop.Sdk//23.08
+          flatpak install -y flathub org.freedesktop.Platform//23.08 org.freedesktop.Sdk//23.08 org.freedesktop.Sdk.Extension.node20//23.08
 
       - name: build AppImage
         run: |
           npm install
-          npm run build --linux
+          npm run build -- --linux --publish never
           chmod +x dist/StreamingServiceLauncher_v*_linux.AppImage
         continue-on-error: true
         
@@ -86,5 +86,6 @@ jobs:
           draft: true
           generate_release_notes: true
           prerelease: contains(github.ref, 'pre')
+          # Using built-in GITHUB_TOKEN which is automatically available
         env:
           GITHUB_TOKEN: ${{ github.token }}
