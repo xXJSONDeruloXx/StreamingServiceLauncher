@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=StreamingServiceLauncher
+Comment=Simple Launcher for streaming services
+Exec=streaming-service-launcher
+Icon=com.aarron_lee.StreamingServiceLauncher
+Terminal=false
+Type=Application
+Categories=Utility;Network;
+Keywords=streaming;netflix;youtube;
+StartupWMClass=StreamingServiceLauncher

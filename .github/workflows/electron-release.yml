@@ -19,7 +19,7 @@ jobs:
     steps:
       - name: set git global safe directory
         run: |
-          pacman -Syu git npm --noconfirm
+          pacman -Syu git npm flatpak-builder --noconfirm
           git config --global --add safe.directory $(realpath .)
 
       - uses: actions/checkout@v4
@@ -30,16 +30,29 @@ jobs:
           npm run build --linux
           chmod +x dist/StreamingServiceLauncher_v*_linux.AppImage
         continue-on-error: true
+        
+      - name: build Flatpak
+        run: |
+          npm run build:flatpak-bundle
+          chmod +x StreamingServiceLauncher_v*.flatpak
+        continue-on-error: true
 
       - name: show files
         run: |
           ls ./dist/StreamingServiceLauncher_v*_linux.AppImage
+          ls ./StreamingServiceLauncher_v*.flatpak
 
-      - name: Publish Artifacts
+      - name: Publish AppImage Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: StreamingServiceLauncher
+          name: StreamingServiceLauncher-AppImage
           path: ./dist/StreamingServiceLauncher_v*_linux.AppImage
+          
+      - name: Publish Flatpak Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: StreamingServiceLauncher-Flatpak
+          path: ./StreamingServiceLauncher_v*.flatpak
 
   publish:
     if: startsWith(github.ref, 'refs/tags/v')
@@ -58,7 +71,9 @@ jobs:
       - name: publish to github release
         uses: softprops/action-gh-release@v1
         with:
-          files: /tmp/artifacts/StreamingServiceLauncher/StreamingServiceLauncher_v*_linux.AppImage
+          files: |
+            /tmp/artifacts/StreamingServiceLauncher-AppImage/StreamingServiceLauncher_v*_linux.AppImage
+            /tmp/artifacts/StreamingServiceLauncher-Flatpak/StreamingServiceLauncher_v*.flatpak
           tag_name: ${{ github.ref_name }}
           body: |
             StreamingServiceLauncher Release

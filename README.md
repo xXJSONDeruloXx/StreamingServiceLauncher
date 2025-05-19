@@ -1,6 +1,6 @@
 # StreamingServiceLauncher
 
-[![](https://img.shields.io/github/downloads/aarron-lee/StreamingServiceLauncher/total.svg)](https://github.com/aarron-lee/StreamingServiceLauncher/releases)
+[![](https://img.shields.io/github/downloads/xxjsonderuloxx/StreamingServiceLauncher/total.svg)](https://github.com/xxjsonderuloxx/StreamingServiceLauncher/releases)
 
 Simple Launcher for Video Streaming Services on SteamOS, Bazzite, SteamFork, etc
 
@@ -8,13 +8,27 @@ Simple Launcher for Video Streaming Services on SteamOS, Bazzite, SteamFork, etc
 
 # Installation / Update
 
-run the following script, it does both install and updates:
+## AppImage (Recommended)
+
+Run the following script, it does both install and updates:
 
 ```
-curl -L https://raw.githubusercontent.com/aarron-lee/StreamingServiceLauncher/refs/heads/main/install.sh | sh
+curl -L https://raw.githubusercontent.com/xxjsonderuloxx/StreamingServiceLauncher/refs/heads/main/install.sh | sh
 ```
+
+## Flatpak
+
+You can install the Flatpak version with:
+
+```
+curl -L https://raw.githubusercontent.com/xxjsonderuloxx/StreamingServiceLauncher/refs/heads/main/install.sh | sh -- --flatpak
+```
+
+Or download and install the Flatpak bundle manually from the [latest release](https://github.com/xxjsonderuloxx/StreamingServiceLauncher/releases/latest).
 
 # Uninstall
+
+## AppImage
 
 ```bash
 rm $HOME/Applications/StreamingServiceLauncher.AppImage
@@ -25,17 +39,34 @@ rm $HOME/.local/share/applications/streamingservicelauncher*.desktop
 rm $HOME/.local/bin/create-streaming-app-desktop-entry
 ```
 
+## Flatpak
+
+```bash
+flatpak uninstall --user com.aarron_lee.StreamingServiceLauncher
+```
+
 # Usage
+
+## AppImage
 
 ```bash
 $HOME/.local/bin/streaming-service-launcher serviceName
 ```
 
+## Flatpak
+
+```bash
+flatpak run com.aarron_lee.StreamingServiceLauncher --appname=serviceName
+```
+
 Example:
 
 ```bash
-# example for netflix
+# example for netflix (AppImage)
 $HOME/.local/bin/streaming-service-launcher netflix
+
+# example for netflix (Flatpak)
+flatpak run com.aarron_lee.StreamingServiceLauncher --appname=netflix
 ```
 
 You can find all `serviceName` values in the [services.json](./services.json)

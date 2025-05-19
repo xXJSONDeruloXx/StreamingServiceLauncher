@@ -6,10 +6,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "electron .",
-    "build": "electron-builder"
+    "build": "electron-builder",
+    "build:flatpak": "flatpak-builder --force-clean build-dir flatpak/com.aarron_lee.StreamingServiceLauncher.json",
+    "build:flatpak-bundle": "flatpak-builder --repo=repo --force-clean build-dir flatpak/com.aarron_lee.StreamingServiceLauncher.json && flatpak build-bundle repo StreamingServiceLauncher_v${npm_package_version}.flatpak com.aarron_lee.StreamingServiceLauncher"
   },
   "build": {
-    "appId": "com.aarron-lee.streaming-service-launcher",
+    "appId": "com.xxjsonderuloxx.streaming-service-launcher",
     "productName": "StreamingServiceLauncher",
     "electronDownload": {
       "mirror": "https://github.com/castlabs/electron-releases/releases/download/v"
@@ -31,7 +33,7 @@
     }
   },
   "keywords": [],
-  "author": "aarron-lee",
+  "author": "xxjsonderuloxx",
   "license": "MIT",
   "devDependencies": {
     "electron": "github:castlabs/electron-releases#v36.0.0+wvcus",
