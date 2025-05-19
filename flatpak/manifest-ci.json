@@ -19,12 +19,14 @@
     "--env=ELECTRON_RUN_AS_NODE=1"
   ],
   "build-options": {
-    "append-path": "/usr/lib/sdk/node20/bin",
+    "append-path": "/usr/bin",
     "env": {
       "NPM_CONFIG_LOGLEVEL": "info",
-      "npm_config_nodedir": "/usr/lib/sdk/node20"
+      "ELECTRON_CACHE": "/tmp/electron-cache",
+      "npm_config_cache": "/tmp/npm-cache"
     },
-    "no-sandbox": true
+    "no-sandbox": true,
+    "system-helper": false
   },
   "modules": [
     {
@@ -59,8 +61,8 @@
       "buildsystem": "simple",
       "build-commands": [
         "# Install Electron without using bubblewrap",
-        "/usr/lib/sdk/node20/bin/npm config set unsafe-perm true",
-        "/usr/lib/sdk/node20/bin/npm install --cache /tmp/npm-cache --no-optional electron@36.0.0",
+        "npm config set unsafe-perm true",
+        "npm install --cache /tmp/npm-cache --no-optional electron@36.0.0",
         "cp -r node_modules /app/",
         
         "# Ensure executable permissions",

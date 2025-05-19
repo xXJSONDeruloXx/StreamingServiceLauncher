@@ -47,29 +47,61 @@ flatpak uninstall --user com.xxjsonderuloxx.StreamingServiceLauncher
 
 # Development
 
-## CI Build Process
+## CI/CD Pipeline
 
-This project uses GitHub Actions to automatically build both AppImage and Flatpak packages. The CI pipeline includes some special accommodations to handle the limitations of building Flatpak in a container environment:
+This project uses GitHub Actions for automated building and releasing of both AppImage and Flatpak packages.
 
-1. A special CI-specific manifest file (`manifest-ci.json`) is used for Flatpak builds in GitHub Actions
-2. The build uses additional flags to work around user namespace restrictions in containers:
-   - `--system-helper=disabled`
-   - `--disable-rofiles-fuse` 
-   - Additional sandbox-disabling flags
+### AppImage Building
+
+The AppImage build process is straightforward using electron-builder. The CI workflow:
+1. Installs dependencies using npm
+2. Builds the application with electron-builder
+3. Makes the AppImage executable and uploads it as an artifact
+
+### Flatpak Building
+
+Building Flatpaks in CI environments is more challenging due to container limitations in GitHub Actions. Our approach:
+
+1. **CI-specific Manifest**: We use a special `manifest-ci.json` that's optimized for CI environments
+2. **Direct Build Strategy**: 
+   - Creates the directory structure manually instead of relying on bubblewrap
+   - Installs Electron directly in the build directory
+   - Uses alternate approaches for repository creation and bundling
+
+3. **Container Adaptations**:
+   - Uses `--disable-rofiles-fuse` and `--system-helper=disabled` flags
+   - Adds `no-sandbox` options for Electron
+   - Implements fallback mechanisms when standard approaches fail
+
+4. **Error Handling**:
+   - Includes multiple fallback approaches for each critical step
+   - Provides detailed logging for troubleshooting
+   - Creates placeholder files if build fails, allowing the workflow to continue
+
+### Troubleshooting CI Builds
 
 If you're experiencing issues with the Flatpak build in CI environments:
 
 1. Check the uploaded build logs artifact for detailed error information
-2. Ensure all source files are correctly copied to the flatpak directory
-3. Consider using the fallback direct build approach which manually structures the Flatpak directory
+2. Verify app ID consistency across desktop files, icons, and manifest
+3. Ensure all required files are properly copied to the build directory
+4. Review npm/Node.js paths and environment variables in the workflow
+
+### Local Development
 
 For local development and building:
 
 ```bash
+# Install dependencies
+npm install
+
+# Run the app during development
+npm start
+
 # Build AppImage locally
 npm run build
 
-# Build Flatpak locally (works better than CI in most environments)
+# Build Flatpak locally (works better than in CI)
 npm run build:flatpak
 npm run build:flatpak-bundle
 ```
