@@ -277,8 +277,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: appimage-build/StreamingServiceLauncher_v${{ github.ref_name }}_linux.AppImage
-          asset_name: StreamingServiceLauncher_v${{ github.ref_name }}_linux.AppImage
+          # Fix the path to match the artifact name and remove double v
+          asset_path: appimage-build/StreamingServiceLauncher_${{ github.ref_name }}_linux.AppImage
+          asset_name: StreamingServiceLauncher_${{ github.ref_name }}_linux.AppImage
           asset_content_type: application/octet-stream
           
       - name: Upload Flatpak Release Asset
@@ -287,8 +288,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: flatpak-build/StreamingServiceLauncher_v${{ github.ref_name }}.flatpak
-          asset_name: StreamingServiceLauncher_v${{ github.ref_name }}.flatpak
+          # Fix the path to match the artifact name and remove double v
+          asset_path: flatpak-build/StreamingServiceLauncher_${{ github.ref_name }}.flatpak
+          asset_name: StreamingServiceLauncher_${{ github.ref_name }}.flatpak
           asset_content_type: application/octet-stream
 
       - name: Publish AppImage Artifacts
